@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+import { formatWan } from '../domain/format'
 import type { PlanInput } from '../domain/types'
 
 const props = defineProps<{
@@ -16,6 +18,12 @@ function updateField(field: keyof PlanInput, value: number) {
     [field]: Number.isFinite(value) ? value : 0
   })
 }
+
+const principalHint = computed(() => formatWan(props.modelValue.principal))
+const annualExpenseHint = computed(() => {
+  const monthlyExpense = props.modelValue.annualBaseExpense / 12
+  return `${formatWan(props.modelValue.annualBaseExpense)} / 年，约 ${formatWan(monthlyExpense)} / 月`
+})
 </script>
 
 <template>
@@ -34,6 +42,7 @@ function updateField(field: keyof PlanInput, value: number) {
         :value="modelValue.principal"
         @input="updateField('principal', Number(($event.target as HTMLInputElement).value))"
       />
+      <small class="input-hint">折合 {{ principalHint }}</small>
     </label>
 
     <label>
@@ -56,6 +65,7 @@ function updateField(field: keyof PlanInput, value: number) {
         :value="modelValue.annualBaseExpense"
         @input="updateField('annualBaseExpense', Number(($event.target as HTMLInputElement).value))"
       />
+      <small class="input-hint">折合 {{ annualExpenseHint }}</small>
     </label>
 
     <label>
