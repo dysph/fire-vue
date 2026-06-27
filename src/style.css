@@ -472,6 +472,7 @@ th:last-child {
     border-radius: 10px;
     padding: 12px 14px;
     transition: all 0.2s ease;
+    margin-bottom: 8px;
   }
 
   .mobile-row-card.depleted {
