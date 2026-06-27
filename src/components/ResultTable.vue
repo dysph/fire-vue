@@ -25,7 +25,9 @@ function formatEvent(event: MatchedEvent) {
       <h2>逐年结果</h2>
       <span>{{ rows.length }} 年</span>
     </div>
-    <div class="table-wrap">
+
+    <!-- Desktop view: Table -->
+    <div class="table-wrap desktop-only">
       <table>
         <thead>
           <tr>
@@ -62,6 +64,44 @@ function formatEvent(event: MatchedEvent) {
           </tr>
         </tbody>
       </table>
+    </div>
+
+    <!-- Mobile view: Card List -->
+    <div class="mobile-only card-list">
+      <div v-for="row in rows" :key="row.yearIndex" class="mobile-row-card" :class="{ depleted: row.endingPrincipal <= 0 }">
+        <div class="card-header">
+          <div class="card-title">
+            <span class="year-badge">第 {{ row.yearIndex }} 年</span>
+            <span class="calendar-age">{{ row.calendarYear }}年 / {{ row.age }}岁</span>
+          </div>
+          <span class="card-principal" :class="{ zero: row.endingPrincipal <= 0 }">
+            本金: {{ formatMoney(row.endingPrincipal) }}
+          </span>
+        </div>
+        <div class="card-details">
+          <div class="detail-item">
+            <span>基础消费</span>
+            <strong>{{ formatMoney(row.baseExpense) }}<span v-if="row.expenseAdjustment !== 0" class="adj-val"> ({{ row.expenseAdjustment > 0 ? '+' : '' }}{{ formatMoney(row.expenseAdjustment) }})</span></strong>
+          </div>
+          <div class="detail-item">
+            <span>投资收益</span>
+            <strong class="interest">+{{ formatMoney(row.interest) }}</strong>
+          </div>
+          <div class="detail-item" v-if="row.eventIncome > 0 || row.eventExpense > 0">
+            <span>特殊收/支</span>
+            <strong>
+              <span v-if="row.eventIncome > 0" class="income">+{{ formatMoney(row.eventIncome) }}</span>
+              <span v-if="row.eventIncome > 0 && row.eventExpense > 0"> / </span>
+              <span v-if="row.eventExpense > 0" class="expense">-{{ formatMoney(row.eventExpense) }}</span>
+            </strong>
+          </div>
+        </div>
+        <div v-if="row.matchedEvents.length > 0" class="card-events">
+          <span v-for="event in row.matchedEvents" :key="`${event.id}-${row.yearIndex}`" class="event-chip">
+            {{ formatEvent(event) }}
+          </span>
+        </div>
+      </div>
     </div>
   </section>
 </template>
