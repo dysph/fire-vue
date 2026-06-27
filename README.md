@@ -1,6 +1,6 @@
-# FIRE 现金流模拟器 Vue 版
+# FIRE 现金流模拟器
 
-这是一个独立的 Vue 3 + TypeScript 重写版本，位于仓库的 `fire-vue/` 子目录中。它不会替换或修改根目录下的旧版 `index.html`，也不会读取旧版页面保存的 `localStorage` 数据。
+这是一个基于 Vue 3 + TypeScript 的 FIRE 现金流模拟器，用于按年度模拟资产、消费、投资收益和特殊现金流事件的长期变化。
 
 ## 功能概览
 
@@ -174,13 +174,11 @@ fire-vue/
 
 ## 数据存储
 
-新版使用独立的 `localStorage` key：
+应用使用以下 `localStorage` key 保存用户输入：
 
 ```text
 fire-vue-plan-v1
 ```
-
-它不会读取旧版页面使用的 `principal`、`annualInterestRate`、`annualExpenses` 等 key。
 
 ## 测试覆盖
 
@@ -199,19 +197,3 @@ fire-vue-plan-v1
 ```text
 src/domain/simulation.test.ts
 ```
-
-## 与旧版页面的关系
-
-旧版页面仍保留在仓库根目录：
-
-```text
-index.html
-```
-
-Vue 版目前是独立子项目：
-
-```text
-fire-vue/
-```
-
-后续如果确认 Vue 版功能和体验稳定，可以再决定是否将根目录入口迁移到 Vue 构建产物。
