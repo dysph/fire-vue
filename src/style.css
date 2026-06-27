@@ -462,8 +462,8 @@ th:last-child {
   /* Card List styles */
   .card-list {
     display: grid;
-    gap: 10px;
-    margin-top: 10px;
+    gap: 16px;
+    margin-top: 16px;
   }
 
   .mobile-row-card {
