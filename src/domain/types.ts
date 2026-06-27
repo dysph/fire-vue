@@ -17,6 +17,7 @@ export type PlanInput = {
   annualReturnRate: number
   annualBaseExpense: number
   inflationRate: number
+  startYear: number
   startAge: number
   maxYears: number
 }
@@ -39,6 +40,7 @@ export type MatchedEvent = CashflowEvent & {
 
 export type SimulationYear = {
   yearIndex: number
+  calendarYear: number
   age: number
   startingPrincipal: number
   baseExpense: number

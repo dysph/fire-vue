@@ -25,6 +25,7 @@ export function simulatePlan(input: PlanInput, events: CashflowEvent[]): Simulat
 
   for (let yearOffset = 0; yearOffset < maxYears; yearOffset++) {
     const yearIndex = yearOffset + 1
+    const calendarYear = input.startYear + yearOffset
     const age = input.startAge + yearOffset
     const startingPrincipal = principal
     const baseExpense = input.annualBaseExpense * Math.pow(1 + input.inflationRate / 100, yearOffset)
@@ -56,6 +57,7 @@ export function simulatePlan(input: PlanInput, events: CashflowEvent[]): Simulat
 
     rows.push({
       yearIndex,
+      calendarYear,
       age,
       startingPrincipal: roundMoney(startingPrincipal),
       baseExpense: roundMoney(baseExpense),

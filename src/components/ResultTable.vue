@@ -42,7 +42,10 @@ function formatEvent(event: MatchedEvent) {
         </thead>
         <tbody>
           <tr v-for="row in rows" :key="row.yearIndex" :class="{ depleted: row.endingPrincipal <= 0 }">
-            <td>{{ row.yearIndex }}</td>
+            <td class="year-cell">
+              <span class="year-index">{{ row.yearIndex }}</span>
+              <span class="calendar-year">{{ row.calendarYear }}</span>
+            </td>
             <td>{{ row.age }}</td>
             <td>{{ formatMoney(row.baseExpense) }}</td>
             <td>{{ formatMoney(row.expenseAdjustment) }}</td>

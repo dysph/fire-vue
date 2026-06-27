@@ -7,6 +7,7 @@ const baseInput: PlanInput = {
   annualReturnRate: 2,
   annualBaseExpense: 50_000,
   inflationRate: 0,
+  startYear: 2026,
   startAge: 40,
   maxYears: 100
 }
@@ -17,12 +18,14 @@ describe('simulatePlan', () => {
 
     expect(result.rows[0]).toMatchObject({
       yearIndex: 1,
+      calendarYear: 2026,
       age: 40,
       baseExpense: 50_000,
       totalExpense: 50_000,
       interest: 19_000,
       endingPrincipal: 969_000
     })
+    expect(result.rows[1].calendarYear).toBe(2027)
   })
 
   it('stops mortgage expenses after the event end age', () => {

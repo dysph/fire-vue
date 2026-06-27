@@ -259,6 +259,21 @@ th:last-child {
   background: #fff1f2;
 }
 
+.year-cell {
+  text-align: center;
+}
+
+.year-index,
+.calendar-year {
+  display: block;
+}
+
+.calendar-year {
+  margin-top: 2px;
+  color: #64748b;
+  font-size: 12px;
+}
+
 .event-chip {
   display: inline-block;
   margin: 2px 4px 2px 0;

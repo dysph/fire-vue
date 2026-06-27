@@ -14,6 +14,7 @@ const defaultPlan: StoredPlan = {
     annualReturnRate: 2,
     annualBaseExpense: 35_000,
     inflationRate: 2.229,
+    startYear: new Date().getFullYear(),
     startAge: 36,
     maxYears: 100
   },

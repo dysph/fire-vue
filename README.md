@@ -90,6 +90,7 @@ type PlanInput = {
   annualReturnRate: number
   annualBaseExpense: number
   inflationRate: number
+  startYear: number
   startAge: number
   maxYears: number
 }
